@@ -1,0 +1,94 @@
+<div class="container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container autosize>
+    <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      opened="{{ sideNavToggle }}"
+    >
+      <mat-icon
+        class="close"
+        *ngIf="toggle === true && mobileQuery.matches === false"
+        (click)="collapse()"
+        >close</mat-icon
+      >
+      <mat-icon
+        (click)="snav.toggle()"
+        class="close"
+        (click)="topbar()"
+        *ngIf="toggle === true && mobileQuery.matches === true"
+        >close</mat-icon
+      >
+      <ul *ngFor="let item of data">
+        <li
+          routerLinkActive="active"
+          class="list {{ toggle ? 'yes' : 'no' }} {{
+            item.children_disabled ? 'collapse' : 'expand'
+          }}"
+        >
+          <div class="arrow {{ toggle ? 'yes' : 'no' }}" (click)="expand(item)">
+            <div class="iconspan {{ toggle ? 'yes' : 'no' }}">
+              <div class="notification {{ toggle ? 'yes' : 'no' }}">
+                <mat-icon
+                  *ngIf="item.notification! > 0"
+                  matBadge="{{ item.notification }}"
+                  matBadgeColor="warn"
+                  matBadgeSize="small"
+                  class="icon"
+                  >{{ item.iconName }}</mat-icon
+                >
+                <mat-icon *ngIf="item.notification! === 0" class="icon">{{
+                  item.iconName
+                }}</mat-icon>
+              </div>
+              <span class="name {{ toggle ? 'yes' : 'no' }}">{{
+                item.displayName
+              }}</span>
+            </div>
+            <mat-icon
+              class="arrowIcon {{ item.children_disabled ? 'yes' : 'no' }}"
+              *ngIf="item.children && toggle === true"
+              >keyboard_arrow_down</mat-icon
+            >
+          </div>
+
+          <div *ngIf="item.children">
+            <ul *ngFor="let children of item.children">
+              <li class="links">
+                <a routerLinkActive="active" routerLink="{{ children.route }}"
+                  >{{ children.displayName }}
+                  <div
+                    *ngIf="children.notification > 0"
+                    class="badge"
+                    matBadge="{{ children.notification }}"
+                    matBadgeColor="warn"
+                    matBadgeSize="small"
+                  ></div
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content {{ !topbarToggle ? 'yes' : 'no' }}">
+      <mat-toolbar *ngIf="mobileQuery.matches === true" class="topbar">
+        <button mat-icon-button (click)="snav.toggle()" (click)="topbar()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div>
+          <p class="topbarname">{{ name }}</p>
+          <div
+            *ngIf="badge > 0"
+            class="topbarbadge"
+            matBadge="{{ badge }}"
+            matBadgeColor="warn"
+            matBadgeSize="small"
+          ></div>
+        </div>
+      </mat-toolbar>
+      <app-wrapper></app-wrapper>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

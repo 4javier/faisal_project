@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  max-width: 3500px;
+  background: rgb(166, 236, 166);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  max-width: 1920px;
+  width:100%;
+  background: rgb(196, 166, 236);
+}
+
+.footer {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  height: 4rem;
+  background: rgb(236, 166, 166);
+  position: fixed;
+  bottom: 0;
+}
