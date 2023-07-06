@@ -28,6 +28,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatSidenavModule,
     MatListModule,
     MatBadgeModule,
+    MatTreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
