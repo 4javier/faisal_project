@@ -2,8 +2,13 @@
   display: flex;
   min-width: 100vw;
 }
+
 mat-sidenav-container {
   height: 100vh;
+}
+
+mat-sidenav-content {
+  width: 100vw;
 }
 
 .collapsed {
@@ -69,6 +74,8 @@ a {
 .icons-list {
   position: relative;
   z-index: 3;
+  height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -76,7 +83,18 @@ a {
   background-color: white;
 }
 
-.icons-list > div {
+.icons-list.__enter {
+  transform: translateX(0);
+  transition: transform 0.2s;
+}
+
+.icons-list.__leave {
+  position: absolute;
+  transform: translateX(-100%);
+  transition: transform 0.2s;
+}
+
+.icons-list > div > div {
   display: flex;
   flex-direction: column;
   align-items: center;

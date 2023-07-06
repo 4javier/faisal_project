@@ -1,5 +1,7 @@
 <div class="container" [class.example-is-mobile]="mobileQuery.matches">
-  <div *ngIf="(showList$ | async) && !mobileQuery.matches" class="icons-list">
+  <div *ngIf="!mobileQuery.matches" class="icons-list"
+  [ngClass]="(showList$ | async) ? '__enter' : '__leave'">
+  <div style="heigth: 100vh">
     <div
       *ngFor="let cat of dataSource.data"
       (click)="showExpandedCat(cat.displayName)"
@@ -9,6 +11,7 @@
       </button>
       <span>{{ cat.displayName }}</span>
     </div>
+  </div>
   </div>
   <mat-sidenav-container>
     <mat-sidenav
