@@ -1,10 +1,12 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { menu } from '../pages/navItem-data';
 import { NavItem } from 'src/app/models/navItem.model';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource, MatTreeModule} from '@angular/material/tree';
+import { MatSidenav } from '@angular/material/sidenav';
+import { filter, map, merge, of, shareReplay, startWith } from 'rxjs';
 
 
 @Component({
@@ -17,6 +19,8 @@ export class SideNavComponent {
   treeControl = new NestedTreeControl<NavItem>(node => node.children);
     dataSource = new MatTreeNestedDataSource<NavItem>();
   private _mobileQueryListener: () => void;
+  @ViewChild('snav') sideNav!: MatSidenav;
+  showList$ = of(true);
 
   
 
@@ -36,6 +40,12 @@ export class SideNavComponent {
   
     hasChild = (_: number, node: NavItem) => !!node.children && node.children.length > 0;
 
+  ngAfterViewInit() {
+    this.showList$ = merge(
+      this.sideNav.openedChange.pipe(filter(v => !v), map(() => true)),
+      this.sideNav.openedStart.pipe(map(() => false))
+    ).pipe(startWith(true))
+  }
 
   
 }

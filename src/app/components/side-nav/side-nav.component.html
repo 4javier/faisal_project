@@ -1,4 +1,7 @@
 <div class="container" [class.example-is-mobile]="mobileQuery.matches">
+  <div *ngIf="showList$ | async" class="icons-list">
+    <mat-icon *ngFor="let cat of dataSource.data">{{ cat.iconName }}</mat-icon>
+  </div>
   <mat-sidenav-container>
     <mat-sidenav
       #snav
