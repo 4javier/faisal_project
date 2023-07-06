@@ -1,3 +1,7 @@
+mat-sidenav-container {
+  height: 100vh;
+}
+
 .collapsed {
   display: none;
 }
@@ -19,187 +23,45 @@ mat-nested-tree-node .mat-tree-node {
   padding-right: 1rem;
 }
 
+mat-nested-tree-node .mat-tree-node > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+mat-nested-tree-node .mat-tree-node:hover {
+  background: rgb(150, 150, 229);
+  font-weight: bold;
+}
+
+mat-nested-tree-node .mat-tree-node.active {
+  background: rgb(150, 150, 229);
+  font-weight: bold;
+}
+
+mat-tree-node {
+  padding-left: 1rem;
+  gap: 2rem;
+}
+
+.mat-tree-node {
+  gap: 2rem;
+}
 /*
  * Padding for leaf nodes.
  * Leaf nodes need to have padding so as to align with other non-leaf nodes
  * under the same parent.
  */
-div[role=group] > .mat-tree-node {
+div[role='group'] > .mat-tree-node {
   padding-left: 2rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .container {
-  height: 100vh;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  width: 100%;
-}
-
-.content {
-  position: relative;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  width: 100%;
-  height: 100vh;
-}
-
-mat-sidenav {
-  font-size: 15px;
-}
-
-.list {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding-top: 8px;
-  padding-left: 20px;
-  padding-right: 20px;
-  list-style: none;
-  width: 200px;
-  height: 35px;
-  overflow: hidden;
-  line-height: 35px;
-   transition: 0.2s ease-in;
-}
-
-.list.no {
-  height: 70px;
-  width: 100px;
-  align-items: center;
-}
-
-.list.expand {
-  height: max-content;
-}
-
-.iconspan {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.iconspan.no {
-  flex-direction: column;
-  gap: 3px;
-}
-
-.notification {
-  display: flex;
-  transition: all 0.2s ease-in;
-}
-
-.notification.no {
-  padding: 10px;
-}
-
-.links {
-  position: relative;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
 a {
-  padding-left: 34px;
   text-decoration: none;
   color: #000;
-  transition: all 0.2s ease-in;
 }
 
-.name {
-  transition: all 0.2s ease-in;
-}
 
-.arrow {
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: all 0.2s ease-in;
-}
 
-.arrow:hover > .iconspan > .notification.no,
-.arrow.yes:hover {
-  background: rgb(150, 150, 229);
-}
 
-.arrow:hover > .iconspan > .name.no {
-  font-weight: bold;
-}
-
-a:hover {
-  background: rgb(150, 150, 229);
-  font-weight: bold;
-}
-
-.arrowIcon {
-  transition: all 0.2s ease-in;
-}
-
-.arrowIcon.no {
-  transform: rotate(180deg);
-}
-
-.badge {
-  position: absolute;
-  left: 180px;
-  top: 18px;
-}
-
-a.active {
-  background: rgb(150, 150, 229);
-  font-weight: bold;
-}
-
-li.active > .arrow > .iconspan > .notification.no {
-  background: rgb(150, 150, 229);
-}
-
-li.active > .arrow > .iconspan > .name.no {
-  font-weight: bold;
-}
-
-.close {
-  position: relative;
-  top: 5px;
-  left: 18px;
-  margin-right: 10px;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.topbar {
-  position: sticky;
-  display: flex;
-  gap: 30px;
-}
-
-.topbarbadge {
-  position: relative;
-  top: -25px;
-  left: 10px;
-}
- */

@@ -1,5 +1,5 @@
 <div class="container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-sidenav-container autosize>
+  <mat-sidenav-container>
     <mat-sidenav
       #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'"
@@ -9,12 +9,26 @@
         <!-- This is the tree node template for leaf nodes -->
         <!-- There is inline padding applied to this node using styles.
         This padding value depends on the mat-icon-button width. -->
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-          {{ node.displayName }}
+        <mat-tree-node
+          *matTreeNodeDef="let node"
+          matTreeNodeToggle
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <div>
+            <a routerLink="{{ node.route }}"> {{ node.displayName }}</a>
+            <div
+              *ngIf="node.notification > 0"
+              matBadge="{{ node.notification }}"
+              matBadgeColor="warn"
+              matBadgeSize="small"
+            ></div>
+          </div>
         </mat-tree-node>
         <!-- This is the tree node template for expandable nodes -->
         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
           <div class="mat-tree-node">
+            <mat-icon>{{ node.iconName }}</mat-icon>
             {{ node.displayName }}
             <button
               mat-icon-button
@@ -35,70 +49,7 @@
           </div>
         </mat-nested-tree-node>
       </mat-tree>
-      <!-- <mat-icon
-        class="close"
-        *ngIf="toggle === true && mobileQuery.matches === false"
-        (click)="collapse()"
-        >close</mat-icon
-      >
-      <mat-icon
-        (click)="snav.toggle()"
-        class="close"
-        (click)="topbar()"
-        *ngIf="toggle === true && mobileQuery.matches === true"
-        >close</mat-icon
-      >
-      <ul *ngFor="let item of data">
-        <li
-          routerLinkActive="active"
-          class="list {{ toggle ? 'yes' : 'no' }} {{
-            item.children_disabled ? 'collapse' : 'expand'
-          }}"
-        >
-          <div class="arrow {{ toggle ? 'yes' : 'no' }}" (click)="expand(item)">
-            <div class="iconspan {{ toggle ? 'yes' : 'no' }}">
-              <div class="notification {{ toggle ? 'yes' : 'no' }}">
-                <mat-icon
-                  *ngIf="item.notification! > 0"
-                  matBadge="{{ item.notification }}"
-                  matBadgeColor="warn"
-                  matBadgeSize="small"
-                  class="icon"
-                  >{{ item.iconName }}</mat-icon
-                >
-                <mat-icon *ngIf="item.notification! === 0" class="icon">{{
-                  item.iconName
-                }}</mat-icon>
-              </div>
-              <span class="name {{ toggle ? 'yes' : 'no' }}">{{
-                item.displayName
-              }}</span>
-            </div>
-            <mat-icon
-              class="arrowIcon {{ item.children_disabled ? 'yes' : 'no' }}"
-              *ngIf="item.children && toggle === true"
-              >keyboard_arrow_down</mat-icon
-            >
-          </div>
-
-          <div *ngIf="item.children">
-            <ul *ngFor="let children of item.children">
-              <li class="links">
-                <a routerLinkActive="active" routerLink="{{ children.route }}"
-                  >{{ children.displayName }}
-                  <div
-                    *ngIf="children.notification > 0"
-                    class="badge"
-                    matBadge="{{ children.notification }}"
-                    matBadgeColor="warn"
-                    matBadgeSize="small"
-                  ></div
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul> -->
+      
     </mat-sidenav>
 
     <mat-sidenav-content>
@@ -107,15 +58,7 @@
           <mat-icon>menu</mat-icon>
         </button>
         <div>
-          <!--           <p class="topbarname">{{ name }}</p>
- -->
-          <!-- <div
-            *ngIf="badge > 0"
-            class="topbarbadge"
-            matBadge="{{ badge }}"
-            matBadgeColor="warn"
-            matBadgeSize="small"
-          ></div> -->
+
         </div>
       </mat-toolbar>
       <app-wrapper></app-wrapper>
