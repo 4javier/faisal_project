@@ -17,12 +17,10 @@ import { filter, map, merge, of, shareReplay, startWith } from 'rxjs';
 export class SideNavComponent {
   mobileQuery: MediaQueryList;
   treeControl = new NestedTreeControl<NavItem>(node => node.children);
-    dataSource = new MatTreeNestedDataSource<NavItem>();
+  dataSource = new MatTreeNestedDataSource<NavItem>();
   private _mobileQueryListener: () => void;
   @ViewChild('snav') sideNav!: MatSidenav;
   showList$ = of(true);
-
-  
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -32,9 +30,7 @@ export class SideNavComponent {
     this.mobileQuery = media.matchMedia('(max-width: 839px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    
-    
-  
+   
     this.dataSource.data = menu;
   }
   
@@ -45,6 +41,12 @@ export class SideNavComponent {
       this.sideNav.openedChange.pipe(filter(v => !v), map(() => true)),
       this.sideNav.openedStart.pipe(map(() => false))
     ).pipe(startWith(true))
+  }
+
+  showExpandedCat(cat: string) {
+    const selCat = this.dataSource.data.find(node => node.displayName === cat)
+    this.treeControl.expand(selCat)
+    this.sideNav.open()
   }
 
   

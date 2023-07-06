@@ -1,3 +1,7 @@
+.container {
+  display: flex;
+  min-width: 100vw;
+}
 mat-sidenav-container {
   height: 100vh;
 }
@@ -62,6 +66,19 @@ a {
   color: #000;
 }
 
+.icons-list {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: white;
+}
 
-
+.icons-list > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
